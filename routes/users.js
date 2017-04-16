@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 module.exports = function(app,pool){
     app.get('/users', function(req, res){
-        res.send('respond with a resource');
+        res.send('respond with a resource aFTER deployed');
     });
 
     app.post('/users/add', function (req, res,next) {
