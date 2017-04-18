@@ -39,7 +39,22 @@ module.exports = function(app,pool){
 
     });
 
-    app.get('/users/:id', function (req, res, next){
+    app.get('/users/:email', function (req, res, next){
+        pool.getConnection(function(err, connection){
+            if(err){
+                console.log(err);
+            }
 
+
+            connection.query("SELECT * FROM users WHERE email=?", [req.params.email], function(err, results, fields){
+                if(err){
+                    console.log(err);
+                    res.status(500);
+                }
+                res.status(200).send(results);
+            });
+
+
+        });
     });
 };
